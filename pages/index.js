@@ -1,18 +1,15 @@
-import { withAuthenticator, AmplifySignIn } from '@aws-amplify/ui-react';
-import { Auth } from 'aws-amplify';
-import Profile from './Profile';
+import { withAuthenticator } from '@aws-amplify/ui-react';
 
-function Home({ user }) {
-  if (user) {
-    return <Profile user={user} />;
-  } else {
-    return (
+
+function Home({ signOut, user }) {
+  return (
+    <div style={{ padding: 50 }}>
+      <h1>Hello, {user.username}.</h1>
       <div>
-        <h1>Welcome to my app!</h1>
-        <AmplifySignIn />
+        <button onClick={signOut}>Sign out</button>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default withAuthenticator(Home);
